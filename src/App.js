@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 
 import {
   Drawer,
@@ -38,8 +38,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   return (
-    <Router>
-      <div style={{ display: "flex" }}>
+    <div style={{ display: "flex" }}>
         <Drawer
           style={{ width: "220px" }}
           variant="persistent"
@@ -101,38 +100,17 @@ function App() {
                 <ListItemText primary={"Settings"} />
               </ListItem>
             </Link>
-
           </List>
         </Drawer>
 
-        <Switch>
-          <Route exact path="/">
-            <AgentDashboard />
-          </Route>
-
-          <Route exact path="/profile">
-            <AgentProfile />
-          </Route>
-
-          <Route exact path="/calls">
-            <AgentCallHistory />
-          </Route>
-
-          <Route exact path="/recordings">
-            <AgentRecordings />
-          </Route>
-
-          <Route exact path="/questiondb">
-            <QuestionDB />
-          </Route>
-
-          <Route exact path="/settings">
-            <AgentSettings />
-          </Route>
-
-        </Switch>
+        <Routes>
+          <Route path="/" element={<AgentDashboard />} />
+          <Route path="/profile" element={<AgentProfile />} />
+          <Route path="/calrecordingsls" element={<AgentRecordings />} />
+          <Route path="/questiondb" element={<QuestionDB />} />
+          <Route path="/settings" element={<AgentSettings />} />
+        </Routes>
       </div>
-    </Router>
   );
 }
 
