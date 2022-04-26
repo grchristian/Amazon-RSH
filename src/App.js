@@ -1,112 +1,109 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import { Routes, Route, Link } from "react-router-dom";
+import { alpha, styled } from '@mui/material/styles';
 
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@material-ui/core";
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 
 // ICONOS
-import HomeIcon from "@material-ui/icons/Home";
-import PersonIcon from "@material-ui/icons/Person";
-import PermPhoneMsgIcon from '@material-ui/icons/PermPhoneMsg';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
+import VideocamIcon from '@mui/icons-material/Videocam';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 // AGENT VIEWS
 import AgentDashboard from "./Views/agentViews/AgentDashboard";
 import AgentCallHistory from "./Views/agentViews/AgentCallsHistory";
 import AgentProfile from "./Views/agentViews/AgentProfile";
-import SettingsIcon from '@material-ui/icons/Settings';
 import AgentRecordings from "./Views/agentViews/AgentRecordings";
 import QuestionDB from "./Views/agentViews/QuestionDB";
 import AgentSettings from "./Views/agentViews/AgentSettings";
 
-
-const useStyles = makeStyles((theme) => ({
-  drawerPaper: { width: "inherit" },
-  link: {
-    textDecoration: "none",
-    color: theme.palette.text.primary,
-  },
-}));
-
 function App() {
-  const classes = useStyles();
+  
+  const CustomDrawer = styled(Drawer)(({ theme }) => ({
+    width: "inherit"
+  }));
+  
+  const CustomLink = styled(Link)(({ theme }) => ({
+    textDecoration: "none",
+    color: theme.palette.text.primary
+  }));
+
   return (
     <div style={{ display: "flex" }}>
-        <Drawer
+        <CustomDrawer
           style={{ width: "220px" }}
           variant="persistent"
           anchor="left"
           open={true}
-          classes={{ paper: classes.drawerPaper }}
         >
           <List>
-            <Link to="/" className={classes.link}>
+            <CustomLink to="/">
               <ListItem button>
                 <ListItemIcon>
                   <HomeIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Home"} />
               </ListItem>
-            </Link>
+            </CustomLink>
 
-            <Link to="/profile" className={classes.link}>
+            <CustomLink to="/profile">
               <ListItem button>
                 <ListItemIcon>
                   <PersonIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Profile"} />
               </ListItem>
-            </Link>
+            </CustomLink>
 
-            <Link to="/calls" className={classes.link}>
+            <CustomLink to="/calls">
               <ListItem button>
                 <ListItemIcon>
                   <PermPhoneMsgIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Call history"} />
               </ListItem>
-            </Link>
+            </CustomLink>
 
-            <Link to="/recordings" className={classes.link}>
+            <CustomLink to="/recordings">
               <ListItem button>
                 <ListItemIcon>
                   <VideocamIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Recordings"} />
               </ListItem>
-            </Link>
+            </CustomLink>
 
-            <Link to="/questiondb" className={classes.link}>
+            <CustomLink to="/questiondb">
               <ListItem button>
                 <ListItemIcon>
                   <QuestionAnswerIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Question database"} />
               </ListItem>
-            </Link>
+            </CustomLink>
 
-            <Link to="/settings" className={classes.link}>
+            <CustomLink to="/settings">
               <ListItem button>
                 <ListItemIcon>
                   <SettingsIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Settings"} />
               </ListItem>
-            </Link>
+            </CustomLink>
           </List>
-        </Drawer>
+        </CustomDrawer>
 
         <Routes>
           <Route path="/" element={<AgentDashboard />} />
           <Route path="/profile" element={<AgentProfile />} />
-          <Route path="/calrecordingsls" element={<AgentRecordings />} />
+          <Route path="/recordings" element={<AgentRecordings />} />
           <Route path="/questiondb" element={<QuestionDB />} />
           <Route path="/settings" element={<AgentSettings />} />
         </Routes>
