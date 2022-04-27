@@ -5,8 +5,17 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import VideoFileIcon from '@mui/icons-material/VideoFile';
+import { alpha, styled } from '@mui/material/styles';
 
-import { Container, Typography } from '@mui/material';
+import { Container, Grid, Paper, Typography } from '@mui/material';
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
 
 function AgentRecordings() {
 
@@ -30,11 +39,14 @@ function AgentRecordings() {
   ];
 
   return (
-    <Container>
-      <Typography variant="h3" gutterBottom>
-        My recordings
+    <>
+      <Typography variant="h5" gutterBottom>
+        Recording list
       </Typography>
-      <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
+      
+      <Grid container spacing={2}>
+  <Grid item xs={4}>
+    <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
         {
           videos.map(video => {
             return(
@@ -50,7 +62,33 @@ function AgentRecordings() {
           })
         }
       </List>
-    </Container>
+  </Grid>
+  <Grid item xs={4}>
+    <Typography variant='button' style={{display: 'block'}}>Date</Typography>
+    <Typography variant='body2' style={{display: 'block'}} gutterBottom>26/04/22</Typography>
+
+    <Typography variant='button' style={{display: 'block'}}>Agent ID</Typography>
+    <Typography variant='body2' style={{display: 'block'}} gutterBottom>21453</Typography>
+
+    <Typography variant='button' style={{display: 'block'}}>Length</Typography>
+    <Typography variant='body2' style={{display: 'block'}} mb={4}>20 minutes</Typography>
+
+    <Typography variant='button' style={{display: 'block'}}>User ID</Typography>
+    <Typography variant='body2' style={{display: 'block'}} gutterBottom>65433</Typography>
+
+    <Typography variant='button' style={{display: 'block'}}>User Name</Typography>
+    <Typography variant='body2' style={{display: 'block'}} gutterBottom>Karen Macías</Typography>
+
+    <Typography variant='button' style={{display: 'block'}}>Requested service</Typography>
+    <Typography variant='body2' style={{display: 'block'}} gutterBottom>Account support</Typography>
+  </Grid>
+  <Grid item xs={4}>
+
+    <iframe width="100%" height="315" src="https://www.youtube.com/embed/tmjN49jEDzQ&showinfo=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; " allowfullscreen></iframe>
+
+  </Grid>
+</Grid>
+    </>
   );
 }
 

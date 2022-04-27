@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { Routes, Route, Link } from "react-router-dom";
 import { alpha, styled } from '@mui/material/styles';
 
@@ -14,11 +13,6 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { Avatar, Button, Dialog, DialogTitle, ListItemAvatar } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import { blue, green, red } from '@mui/material/colors';
-
-
 
 // AGENT VIEWS
 import AgentDashboard from "./Views/agentViews/AgentDashboard";
@@ -35,8 +29,21 @@ import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import SettingsIcon from '@mui/icons-material/Settings';
+import IncomingCall from './components/IncomingCall';
+
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import CallIcon from '@mui/icons-material/Call';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+import PrintIcon from '@mui/icons-material/Print';
+import ShareIcon from '@mui/icons-material/Share';
 import CallEndIcon from '@mui/icons-material/CallEnd';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import PauseIcon from '@mui/icons-material/Pause';
+import StopIcon from '@mui/icons-material/Stop';
+import RateCall from './Views/agentViews/RateCall';
 
 const drawerWidth = 240;
 
@@ -45,56 +52,26 @@ const CustomLink = styled(Link)(({ theme }) => ({
   color: theme.palette.text.primary
 }));
 
-const emails = ['username@gmail.com', 'user02@gmail.com'];
-
-function SimpleDialog(props) {
-  const { onClose, selectedValue, open } = props;
-
-  const handleClose = () => {
-    onClose(selectedValue);
-  };
-
-  const handleListItemClick = (value) => {
-    onClose(value);
-  };
-
-  return (
-    <Dialog onClose={handleClose} open={open}>
-      <DialogTitle>Incoming call</DialogTitle>
-      <List sx={{ pt: 0 }}>
-          <ListItem button onClick={() => handleListItemClick("pick_up")} key="pick_up">
-            <ListItemAvatar>
-              <Avatar sx={{ bgcolor: green[100], color: green[600] }}>
-                <CallIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Pick up" />
-          </ListItem>
-
-          <ListItem button onClick={() => handleListItemClick("hang_up")} key="hang_up">
-            <ListItemAvatar>
-              <Avatar sx={{ bgcolor: red[100], color: red[600] }}>
-                <CallEndIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary="Hang up" />
-          </ListItem>
-
-      </List>
-    </Dialog>
-  );
-}
-
-SimpleDialog.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired,
-  selectedValue: PropTypes.string.isRequired,
-};
-
 export default function PermanentDrawerLeft() {
 
+  const menuLinkItems = [
+    { icon: <HomeIcon />, name: 'Home', link: '/' },
+    { icon: <PersonIcon />, name: 'Profile', link: '/profile' },
+    { icon: <PermPhoneMsgIcon />, name: 'Call history', link: '/calls' },
+    { icon: <VideocamIcon />, name: 'Recordings', link: '/recordings' },
+    { icon: <QuestionAnswerIcon />, name: 'Question Database', link: '/questiondb' },
+    { icon: <SettingsIcon />, name: 'Settings', link: '/settings' },
+  ];
+
+  const callActions = [
+    { icon: <Link to="/rate"><CallEndIcon /></Link>, name: 'Hang up', onclick: () => { handleActiveCall(false) } },
+    { icon: <FiberManualRecordIcon />, name: 'Start recording' },
+    { icon: <PauseIcon />, name: 'Pause recording' },
+    { icon: <StopIcon />, name: 'Stop recording' },
+  ];
+
   const [open, setOpen] = React.useState(false);
-  const [selectedValue, setSelectedValue] = React.useState(emails[1]);
+  const [selectedValue, setSelectedValue] = React.useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -103,7 +80,19 @@ export default function PermanentDrawerLeft() {
   const handleClose = (value) => {
     setOpen(false);
     setSelectedValue(value);
+
+    if(value == "pick_up") {
+      handleActiveCall(true);
+    }
+
   };
+
+
+  const [activeCall, setActiveCall] = React.useState(false);
+
+  const handleActiveCall = value => {
+    setActiveCall(value);
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -112,7 +101,7 @@ export default function PermanentDrawerLeft() {
         position="fixed"
         sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
       >
-        <Toolbar>
+        <Toolbar sx={activeCall && { backgroundColor: '#4caf50' }}>
           <Typography variant="h6" noWrap component="div">
             Amazon RSH
           </Typography>
@@ -133,59 +122,17 @@ export default function PermanentDrawerLeft() {
         <Toolbar />
         <Divider />
         <List>
-        <CustomLink to="/">
-              <ListItem button>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Home"} />
-              </ListItem>
-            </CustomLink>
 
-            <CustomLink to="/profile">
-              <ListItem button>
-                <ListItemIcon>
-                  <PersonIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Profile"} />
-              </ListItem>
-            </CustomLink>
-
-            <CustomLink to="/calls">
-              <ListItem button>
-                <ListItemIcon>
-                  <PermPhoneMsgIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Call history"} />
-              </ListItem>
-            </CustomLink>
-
-            <CustomLink to="/recordings">
-              <ListItem button>
-                <ListItemIcon>
-                  <VideocamIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Recordings"} />
-              </ListItem>
-            </CustomLink>
-
-            <CustomLink to="/questiondb">
-              <ListItem button>
-                <ListItemIcon>
-                  <QuestionAnswerIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Question database"} />
-              </ListItem>
-            </CustomLink>
-
-            <CustomLink to="/settings">
-              <ListItem button>
-                <ListItemIcon>
-                  <SettingsIcon />
-                </ListItemIcon>
-                <ListItemText primary={"Settings"} />
-              </ListItem>
-            </CustomLink>
+          {menuLinkItems.map((item) => (
+          <CustomLink to={item.link}>
+            <ListItem button>
+              <ListItemIcon>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText primary={item.name} />
+            </ListItem>
+          </CustomLink>
+          ))}
 
             <ListItem button onClick={handleClickOpen}>
                 <ListItemIcon>
@@ -194,7 +141,7 @@ export default function PermanentDrawerLeft() {
                 <ListItemText primary={"Call Dialog"} />
               </ListItem>
 
-      <SimpleDialog
+      <IncomingCall
         selectedValue={selectedValue}
         open={open}
         onClose={handleClose}
@@ -213,7 +160,25 @@ export default function PermanentDrawerLeft() {
           <Route path="/recordings" element={<AgentRecordings />} />
           <Route path="/questiondb" element={<QuestionDB />} />
           <Route path="/settings" element={<AgentSettings />} />
+          <Route path="/rate" element={<RateCall />} />
         </Routes>
+
+        {activeCall && 
+        <SpeedDial
+        ariaLabel="SpeedDial basic example"
+        sx={{ position: 'absolute', bottom: 16, right: 16 }}
+        icon={<CallIcon />}
+      >
+        {callActions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={action.onclick}
+          />
+        ))}
+      </SpeedDial>
+      }
       </Box>
     </Box>
   );
