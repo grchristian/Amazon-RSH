@@ -15,12 +15,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
 // AGENT VIEWS
-import AgentDashboard from "./Views/agentViews/AgentDashboard";
-import AgentCallHistory from "./Views/agentViews/AgentCallsHistory";
-import AgentProfile from "./Views/agentViews/AgentProfile";
-import AgentRecordings from "./Views/agentViews/AgentRecordings";
-import QuestionDB from "./Views/agentViews/QuestionDB";
-import AgentSettings from "./Views/agentViews/AgentSettings";
+import AgentDashboard from "./views/agentViews/AgentDashboard";
+import AgentCallHistory from "./views/agentViews/AgentCallsHistory";
+import AgentProfile from "./views/agentViews/AgentProfile";
+import AgentRecordings from "./views/agentViews/AgentRecordings";
+import QuestionDB from "./views/agentViews/QuestionDB";
+import AgentSettings from "./views/agentViews/AgentSettings";
 
 // Icons
 import HomeIcon from '@mui/icons-material/Home';
@@ -43,7 +43,7 @@ import CallEndIcon from '@mui/icons-material/CallEnd';
 import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 import PauseIcon from '@mui/icons-material/Pause';
 import StopIcon from '@mui/icons-material/Stop';
-import RateCall from './Views/agentViews/RateCall';
+import RateCall from './views/agentViews/RateCall';
 
 const drawerWidth = 240;
 

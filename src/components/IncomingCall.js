@@ -10,8 +10,6 @@ import { green, red } from '@mui/material/colors';
 import CallIcon from '@mui/icons-material/Call';
 import CallEndIcon from '@mui/icons-material/CallEnd';
 
-
-
 function IncomingCall(props) {
 
   const { onClose, selectedValue, open } = props;

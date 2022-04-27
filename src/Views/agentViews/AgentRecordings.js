@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import VideoFileIcon from '@mui/icons-material/VideoFile';
 import { alpha, styled } from '@mui/material/styles';
 
-import { Container, Grid, Paper, Typography } from '@mui/material';
+import { Box, Chip, Container, Grid, Paper, Typography } from '@mui/material';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -37,6 +37,8 @@ function AgentRecordings() {
       date: "Nov 16, 2022"
     }
   ];
+  
+  const tags = ["Solved", "To review", "Annoying user", "Impatient user", "Internet search", "Medium quality", "Search in previously solved problems", "Account error service", "Personal information within the video", "Review because of element in the recording not working"];
 
   return (
     <>
@@ -80,7 +82,15 @@ function AgentRecordings() {
     <Typography variant='body2' style={{display: 'block'}} gutterBottom>Karen Macías</Typography>
 
     <Typography variant='button' style={{display: 'block'}}>Requested service</Typography>
-    <Typography variant='body2' style={{display: 'block'}} gutterBottom>Account support</Typography>
+    <Typography variant='body2' style={{display: 'block'}} mb={4}>Account support</Typography>
+      
+    <Box sx={{ lineHeight: '20px' }}>
+      {tags.map(tag => (
+        <Box sx={{ display: 'inline' }} mr={1}>
+          <Chip label={tag} variant="outlined" />
+        </Box>   
+      ))}
+    </Box>
   </Grid>
   <Grid item xs={4}>
 
