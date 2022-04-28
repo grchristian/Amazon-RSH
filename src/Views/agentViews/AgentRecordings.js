@@ -8,6 +8,7 @@ import VideoFileIcon from '@mui/icons-material/VideoFile';
 import { alpha, styled } from '@mui/material/styles';
 
 import { Box, Chip, Container, Grid, Paper, Typography } from '@mui/material';
+import { red } from '@mui/material/colors';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -42,12 +43,13 @@ function AgentRecordings() {
 
   return (
     <>
-      <Typography variant="h5" gutterBottom>
-        Recording list
-      </Typography>
+    
       
       <Grid container spacing={2}>
   <Grid item xs={4}>
+  <Typography variant="h5" gutterBottom>
+        Recording list
+      </Typography>
     <List sx={{ width: '100%', maxWidth: '100%', bgcolor: 'background.paper' }}>
         {
           videos.map(video => {
@@ -65,7 +67,12 @@ function AgentRecordings() {
         }
       </List>
   </Grid>
+
   <Grid item xs={4}>
+    
+  <Typography variant="h5" mb={3}>
+        Video information
+      </Typography>
     <Typography variant='button' style={{display: 'block'}}>Date</Typography>
     <Typography variant='body2' style={{display: 'block'}} gutterBottom>26/04/22</Typography>
 
@@ -84,10 +91,13 @@ function AgentRecordings() {
     <Typography variant='button' style={{display: 'block'}}>Requested service</Typography>
     <Typography variant='body2' style={{display: 'block'}} mb={4}>Account support</Typography>
       
-    <Box sx={{ lineHeight: '20px' }}>
+    <Typography variant="h7" gutterBottom sx={{ fontWeight: 'bold' }}>
+        Related Tags
+      </Typography>
+    <Box sx={{ lineHeight: '45px', marginTop: '10px'}}>
       {tags.map(tag => (
-        <Box sx={{ display: 'inline' }} mr={1}>
-          <Chip label={tag} variant="outlined" />
+        <Box sx={{ display: 'inline'}} mr ={1}>
+          <Chip label={tag} variant="outlined" sx={{backgroundColor:"#edf2fb" }} />
         </Box>   
       ))}
     </Box>
