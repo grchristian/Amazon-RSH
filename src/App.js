@@ -157,7 +157,9 @@ export default function PermanentDrawerLeft() {
         <Routes>
           <Route path="/" element={<AgentDashboard />} />
           <Route path="/profile" element={<AgentProfile />} />
-          <Route path="/recordings" element={<AgentRecordings />} />
+          <Route path="/recordings" element={<AgentRecordings />}>
+            <Route path=":recordingId" element={<AgentRecordings />} />
+          </Route>
           <Route path="/questiondb" element={<QuestionDB />} />
           <Route path="/settings" element={<AgentSettings />} />
           <Route path="/rate" element={<RateCall />} />
