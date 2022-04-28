@@ -29,7 +29,7 @@ import PermPhoneMsgIcon from '@mui/icons-material/PermPhoneMsg';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import SettingsIcon from '@mui/icons-material/Settings';
-import IncomingCall from './components/IncomingCall';
+import IncomingCall from './components/agentComponents/IncomingCall';
 
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';

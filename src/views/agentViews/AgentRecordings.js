@@ -10,7 +10,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { Pagination, Grid, Paper, Typography } from '@mui/material';
 import { red } from '@mui/material/colors';
 import { Link, useParams } from 'react-router-dom';
-import { VideoInfo } from '../../components/VideoInfo';
+import { VideoInfo } from '../../components/agentComponents/VideoInfo';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
