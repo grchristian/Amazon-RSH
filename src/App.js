@@ -16,7 +16,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 // AGENT VIEWS
 import AgentDashboard from "./views/agentViews/AgentDashboard";
-import AgentCallHistory from "./views/agentViews/AgentCallsHistory";
+import CallHistory from "./views/agentViews/AgentCallsHistory";
 import AgentProfile from "./views/agentViews/AgentProfile";
 import AgentRecordings from "./views/agentViews/AgentRecordings";
 import QuestionDB from "./views/agentViews/QuestionDB";
@@ -157,6 +157,7 @@ export default function PermanentDrawerLeft() {
         <Routes>
           <Route path="/" element={<AgentDashboard />} />
           <Route path="/profile" element={<AgentProfile />} />
+          <Route path="/calls" element={<CallHistory />} />
           <Route path="/recordings" element={<AgentRecordings />}>
             <Route path=":recordingId" element={<AgentRecordings />} />
           </Route>
